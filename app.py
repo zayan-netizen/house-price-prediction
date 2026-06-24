@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
-
+from src import *
+from src.predict import predict_price
 app = Flask(__name__)
 
 @app.route("/")
@@ -15,11 +16,7 @@ def predict():
     bhk = request.form["BHK"]
     year = request.form["Year"]
 
-    print("SqFt:", sqft)
-    print("BHK:", bhk)
-    print("Year:", year)
-    
-    prediction = 147
+    prediction = predict_price(sqft, bhk, year)
 
     return render_template("index.html", prediction=prediction)
 
