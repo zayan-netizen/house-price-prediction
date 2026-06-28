@@ -10,16 +10,20 @@ def home():
 
 @app.route("/predict", methods=["POST"])
 def predict():
-
-    print(request.form)
+    try:
+        print(request.form)
     
-    sqft = request.form["SqFt"]
-    bathroom = request.form["Bathroom"]
-    balcony = request.form["Balcony"]
+        sqft = request.form["SqFt"]
+        bathroom = request.form["Bathroom"]
+        balcony = request.form["Balcony"]
 
-    prediction = predict_price(sqft, bathroom, balcony)
+        prediction = predict_price(sqft, bathroom, balcony)
 
-    return render_template("index.html", prediction=prediction, sqft=sqft, bathroom=bathroom, balcony=balcony)
+        return render_template("index.html", prediction=prediction, sqft=sqft, bathroom=bathroom, balcony=balcony)
+    
+    except Exception as e:
+        print(e)
+        return str(e)
 
 if __name__ == "__main__":
     app.run(
