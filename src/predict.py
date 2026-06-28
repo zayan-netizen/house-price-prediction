@@ -1,7 +1,12 @@
+from pathlib import Path
 import json
 import numpy as np
 
-with open("models/model.json", "r") as f:
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODEL_PATH = BASE_DIR / "models" / "model.json"
+
+with open(MODEL_PATH, "r") as f:
 
     model_data = json.load(f)
 
@@ -27,5 +32,3 @@ def predict_price(sqft, no_bath, no_balcony):
 
     return prediction
 
-
-print(predict_price(1000, 4, 4))
