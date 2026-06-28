@@ -5,7 +5,15 @@ from preprocess import *
 from model import *
 from metrics import *
 
-df = load_data("../data/india_housing_prices.csv")
+print(f"rows before: {len(df)}")
+
+df = load_data("../data/Bengaluru_House_Data.csv")
+
+df["total_sqft"] = (df["total_sqft"].apply(convert_sqft_to_num))
+
+df = df.dropna(subset=["total_sqft"])
+
+print(f"rows after: {len(df)}")
 
 X = df[FEATURES].values
 
@@ -31,7 +39,7 @@ model_data = {
     "std": std.tolist()
 }
 
-with open("models/model.json", "w") as f:
+with open("../models/model.json", "w") as f:
 
     json.dump(model_data, f, indent=4)
 

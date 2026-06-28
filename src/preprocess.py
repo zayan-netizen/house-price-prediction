@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
 
-FEATURES = ["Size_in_SqFt", "BHK", "Year_Built"]
+FEATURES = ["total_sqft", "bath", "balcony"]
 
-TARGET = "Price_in_Lakhs"
+TARGET = "price"
 
 def load_data(path):
 
@@ -25,8 +25,6 @@ def normalize(X):
 
     return X_norm, mean, std
 
-print(normalize(load_data("../data/india_housing_prices.csv")))
-
 def split_data(X, y, train_ratio=0.8):
 
     n = len(X)
@@ -40,5 +38,23 @@ def split_data(X, y, train_ratio=0.8):
         y[split_idx:]
     )
 
+def convert_sqft_to_num(x):
+
+    x = str(x).strip()
+
+    try:
+        return float(x)
+    
+    except ValueError:
+
+        if "-" in str(x):
+
+            low, high = x.split("-")
+
+            return (float(low) + float(high) / 2)
+    
+        return None
+
+df = load_data("../data/Bengaluru_House_Data.csv")
 
 
