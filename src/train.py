@@ -5,9 +5,9 @@ from preprocess import *
 from model import *
 from metrics import *
 
-print(f"rows before: {len(df)}")
-
 df = load_data("../data/Bengaluru_House_Data.csv")
+
+print(f"rows before: {len(df)}")
 
 df["total_sqft"] = (df["total_sqft"].apply(convert_sqft_to_num))
 
@@ -36,7 +36,9 @@ model_data = {
     "weights": model.weights.tolist(),
     "bias": float(model.bias),
     "mean": mean.tolist(),
-    "std": std.tolist()
+    "std": std.tolist(),
+    "y_mean": float(mean_y),
+    "y_std": float(std_y)
 }
 
 with open("../models/model.json", "w") as f:
@@ -62,3 +64,12 @@ print(
     r2_score(y_test, predictions)
 )
 
+print("\nSample Prediction\n")
+
+y_test_actual = y_test * std_y + mean_y
+predictions_actual = predictions * std_y + mean_y
+
+for i in range(10):
+    error = abs(y_test_actual[i] - predictions_actual[i])
+    percent = (error / y_test_actual[i]) * 100
+    print(f"Actual: {y_test_actual[i]:.2f} | "f"Predicted: {predictions_actual[i]:.2f} |" f"Error: {error}")

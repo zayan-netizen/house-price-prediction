@@ -13,12 +13,19 @@ mean = np.array(model_data["mean"], dtype=float)
 
 std = np.array(model_data["std"], dtype=float)
 
-def predict_price(sqft=1000, bhk=2, year=2000):
+y_mean = model_data["y_mean"]
 
-    X = np.array([sqft, bhk, year], dtype=float)
+y_std = model_data["y_std"]
+
+def predict_price(sqft, no_bath, no_balcony):
+
+    X = np.array([sqft, no_bath, no_balcony], dtype=float)
 
     X = (X - mean) / std
 
-    prediction = (np.dot(X, weights) + bias)
+    prediction = (np.dot(X, weights) + bias) * y_std + y_mean
 
     return prediction
+
+
+print(predict_price(1000, 4, 4))

@@ -55,6 +55,5 @@ def convert_sqft_to_num(x):
     
         return None
 
-df = load_data("../data/Bengaluru_House_Data.csv")
 
 
