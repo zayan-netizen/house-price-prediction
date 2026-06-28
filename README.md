@@ -59,13 +59,13 @@ Bias:
 - The model currently uses only numerical features; location information has not yet been incorporated.
 
 <p align="center">
-    <img src="static/images/v-1,1.png" width="40%" heigth="40%">
-    <img src="static/images/v-1,2.png" width="40%" heigth="40%">
+    <img src="static/images/v-1,1.png" width="45%">
+    <img src="static/images/v-1,2.png" width="45%">
 </p>
 
 <p align="center">
-    <img src="static/images/v-1,3.png" width="40%" height="40%">
-    <img src="static/images/v-1,4.png" width="40%" height="40%">
+    <img src="static/images/v-1,3.png" width="45%">
+    <img src="static/images/v-1,4.png" width="45%">
 </p>
 
 - As we can see, as I increase square feet, no. of bathroom or no. of balcony the price is increasing which shows that the model has learnt, and as the weights given above, the price depends on sqft the most then bathroom then balcony
