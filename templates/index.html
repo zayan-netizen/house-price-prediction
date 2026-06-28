@@ -5,35 +5,47 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     </head>
 
-    <body>
+    <body class="bg-black text-white">
 
-        <h1>House Price Predictor</h1>
+        <h1 class="text-center" style="margin-bottom: 100px; margin-top: 100px;">House Price Predictor</h1>
+        <div class="d-flex justify-content-center">
+        <form action="/predict" method="POST" class="d-flex flex-column gap-3 w-25">
 
-        <form action="/predict" method="POST">
-
+            <label class="m-1">Total Square Feet:
             <input 
                 type="number"
                 name="SqFt"
-                placeholder="Size in SqFt">
+                placeholder="Size in SqFt"
+                class="p-2 rounded form-control"
+                value="{{ sqft or '' }}">
+            </label>
 
+            <label class="m-1">No. of Bathrooms:
+                <input
+                type="number"
+                name="Bathroom"
+                placeholder="No. of bathrooms"
+                class="p-2 rounded form-control"
+                value="{{ bathroom or ''}}">
+            </label>
+
+            <label class="m-1">No. of Balcony:
             <input
                 type="number"
-                name="BHK"
-                placeholder="BHK">
+                name="Balcony"
+                placeholder="No. 0f Balcony"
+                class="p-2 rounded form-control"
+                value="{{ balcony or ''}}">
+            </label>
 
-            <input
-                type="number"
-                name="Year"
-                placeholder="Year Built">
-
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-primary rounded">
                 Predict
             </button>
               
         </form>
-
+        </div>
         {% if prediction %}
-            <h2>
+            <h2 class="text-center mt-5 mb-5 text-info">
                 Predicted Price: ₹ {{ prediction }} Lakhs
             </h2>
         {% endif %}

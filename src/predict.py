@@ -1,7 +1,7 @@
 import json
 import numpy as np
 
-with open("../models/model.json", "r") as f:
+with open("models/model.json", "r") as f:
 
     model_data = json.load(f)
 

@@ -13,12 +13,12 @@ def predict():
     print(request.form)
     
     sqft = request.form["SqFt"]
-    bhk = request.form["BHK"]
-    year = request.form["Year"]
+    bathroom = request.form["Bathroom"]
+    balcony = request.form["Balcony"]
 
-    prediction = predict_price(sqft, bhk, year)
+    prediction = predict_price(sqft, bathroom, balcony)
 
-    return render_template("index.html", prediction=prediction)
+    return render_template("index.html", prediction=prediction, sqft=sqft, bathroom=bathroom, balcony=balcony)
 
 if __name__ == "__main__":
     app.run(debug = True)

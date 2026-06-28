@@ -2,7 +2,7 @@
 Implemented linear regression from scratch to better understand the mathematics behind gradient descent before using Scikit-learn, used a dataset from Kaggle. The Bangalore dataset has 9 features, namely: area_type, availability, location, size, society, total_sqft, bath, balcony, and price.
 ***
 
-# Stack Used
+## Stack Used
 #### Python . Numpy . Pandas . Matplotlib . Flask . HTML . CSS
 
 ***
@@ -16,7 +16,7 @@ Implemented linear regression from scratch to better understand the mathematics 
 - After removing: 12669
 
 #### 2) Virtual Environment
-I couldn't install pandas, matplotlib, and other libraries in the WSL environment due to version compatibility issues. Hence, I had to create a virtual environment. However, it is a bit hectic since I have to activate the virtual environment every time I want to run the code.
+I couldn't install pandas, matplotlib, and other libraries in the WSL environment due to version compatibility issues. Hence, I had to create a virtual environment. However, it is a bit hectic since I have to activate the virtual environment every time I wanted to run the code.
 
 ***
 ## Results
@@ -58,10 +58,29 @@ Bias:
 - The training loss converged from **0.9561** to **0.6131**.
 - The model currently uses only numerical features; location information has not yet been incorporated.
 
+<p align="center">
+    <img src="static/images/v-1,1.png" width="40%" heigth="40%">
+    <img src="static/images/v-1,2.png" width="40%" heigth="40%">
+</p>
+
+<p align="center">
+    <img src="static/images/v-1,3.png" width="40%" height="40%">
+    <img src="static/images/v-1,4.png" width="40%" height="40%">
+</p>
+
+- As we can see, as I increase square feet, no. of bathroom or no. of balcony the price is increasing which shows that the model has learnt, and as the weights given above, the price depends on sqft the most then bathroom then balcony
+
+- End of version 1 !
 ***
 
 ### 📌 Version Two
 
+- Add location as a feature
+- Implement one-hot encoding from scratch
+- Save and load trained model parameters
+- Improve Flask UI
+- Compare results with Scikit-Learn's Linear Regression
+- Improve preprocessing by converting uncommon area units instead of dropping them
 
 ***
 ## Things I Did
@@ -84,4 +103,4 @@ I know using a standard model like Scikit-learn is better, but I am planning to 
 - static: Contains the JavaScript files (JavaScript hasn't been used yet).
 ***
 
-# Thank You For Viweing My Project, it will be deployed locally very soon.
+# Thank You For Viewing My Project, it will be deployed locally very soon.
