@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request
 from src import *
 from src.predict import predict_price
@@ -21,5 +22,7 @@ def predict():
     return render_template("index.html", prediction=prediction, sqft=sqft, bathroom=bathroom, balcony=balcony)
 
 if __name__ == "__main__":
-    app.run(debug = True)
-
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000))
+    )
