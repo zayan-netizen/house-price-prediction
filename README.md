@@ -1,9 +1,11 @@
 # house-price-prediction
-Implemented linear regression from scratch to better understand the mathematics behind gradient descent before using Scikit-learn, used a dataset from Kaggle. The Bangalore dataset has 9 features, namely: area_type, availability, location, size, society, total_sqft, bath, balcony, and price.
+Implemented linear regression from scratch to better understand the mathematics behind gradient descent before using Scikit-learn, used a dataset from Kaggle. The Bangalore dataset has 9 features, namely: area_type, availability, location, size, society, total_sqft, bath, balcony, and price. Planning to add comparision with Scikit-learn later.
 ***
 
+## [Live (Click here)](https://house-price-prediction-3eqx.onrender.com/)
+
 ## Stack Used
-#### Python . Numpy . Pandas . Matplotlib . Flask . HTML . CSS
+#### . Python . Numpy . Pandas . Machine Learning . Flask . HTML . CSS
 
 ***
 ## Problems I Faced
@@ -103,4 +105,4 @@ I know using a standard model like Scikit-learn is better, but I am planning to 
 - static: Contains the JavaScript files (JavaScript hasn't been used yet).
 ***
 
-# Thank You For Viewing My Project, it will be deployed locally very soon.
+# Thank You
