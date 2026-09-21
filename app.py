@@ -1,32 +1,33 @@
 import os
 from flask import Flask, render_template, request
 from src import *
-from src.predict import predict_price
+from src.predict import predict_price, columns
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+
+    locations = [col for col in columns if col not in ["total_sqft", "bath", "balcony"]]
+
+    return render_template("index.html", locations=locations)
 
 @app.route("/predict", methods=["POST"])
 def predict():
-    try:
-        print(request.form)
-    
-        sqft = request.form["SqFt"]
-        bathroom = request.form["Bathroom"]
-        balcony = request.form["Balcony"]
+    try:    
+        sqft = float(request.form["SqFt"])
+        bathroom = int(request.form["Bathroom"])
+        balcony = int(request.form["Balcony"])
+        location = request.form["Location"]
 
-        prediction = predict_price(sqft, bathroom, balcony)
+        locations = [col for col in columns if col not in ["total_sqft", "bath", "balcony"]]
+        
+        prediction = predict_price(sqft, bathroom, balcony, location)
 
-        return render_template("index.html", prediction=prediction, sqft=sqft, bathroom=bathroom, balcony=balcony)
+        return render_template("index.html", prediction=prediction, sqft=sqft, bathroom=bathroom, balcony=balcony, location=location, locations=locations)
     
     except Exception as e:
         print(e)
         return str(e)
 
 if __name__ == "__main__":
-    app.run(
-        host="0.0.0.0",
-        port=int(os.environ.get("PORT", 5000))
-    )
+    app.run(debug=True)

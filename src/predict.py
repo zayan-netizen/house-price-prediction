@@ -22,13 +22,24 @@ y_mean = model_data["y_mean"]
 
 y_std = model_data["y_std"]
 
-def predict_price(sqft, no_bath, no_balcony):
+columns = model_data["columns"]
 
-    X = np.array([sqft, no_bath, no_balcony], dtype=float)
+def predict_price(sqft, no_bath, no_balcony, location):
+
+    X = np.zeros(len(columns))
+
+    X[columns.index("total_sqft")] = sqft
+    X[columns.index("bath")] = no_bath
+    X[columns.index("balcony")] = no_balcony
+
+    if location in columns:
+        X[columns.index(location)] = 1
+    else:
+        X[columns.index("other")] = 1
 
     X = (X - mean) / std
 
-    prediction = (np.dot(X, weights) + bias) * y_std + y_mean
+    prediction = round((np.dot(X, weights) + bias) * y_std + y_mean, 2)
 
     return prediction
 

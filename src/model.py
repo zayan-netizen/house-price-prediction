@@ -39,3 +39,4 @@ class LinearRegression:
         return(
             np.dot(X, self.weights) + self.bias
         )
+    
