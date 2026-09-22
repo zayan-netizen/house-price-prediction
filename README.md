@@ -1,6 +1,13 @@
-# House Price Prediction
+# house-price-prediction
 
 Implemented Linear Regression from scratch to better understand the mathematics behind gradient descent . The dataset used for this project was obtained from Kaggle.
+***
+ 
+## [Live (Click here)](https://house-price-prediction-3eqx.onrender.com/)
+
+## Stack Used
+
+#### . Python . Numpy . Pandas . Machine Learning . Flask . HTML . CSS
 
 The original Bangalore house-price dataset contains 9 columns:
 
@@ -49,11 +56,6 @@ The decrease in the number of unique values for each column was:
 * **`size`** lost 5 unique values, while `area_type` did not lose any unique values.
 
 Overall, only **610 out of 13,320 rows (~4.58%)** were removed during null-value cleaning. Therefore, the majority of the original dataset was retained for model training.
-
-***
-
-## Stack Used
-#### Python . Numpy . Pandas . Matplotlib . Flask . HTML . CSS
 
 ***
 
@@ -150,4 +152,4 @@ I know using a standard model like Scikit-learn is better, but I am planning to 
 - static: Contains the JavaScript files (JavaScript hasn't been used yet).
 ***
 
-# Thank You For Viewing My Project.
+# Thank You
