@@ -11,7 +11,7 @@
         <div class="d-flex justify-content-center">
         <form action="/predict" method="POST" class="d-flex flex-column gap-3 w-25">
 
-            <label class="m-1">Total Square Feet:
+            <label class="m-1 from-label">Total Square Feet:
             <input 
                 type="number"
                 name="SqFt"
@@ -20,7 +20,7 @@
                 value="{{ sqft or '' }}">
             </label>
 
-            <label class="m-1">No. of Bathrooms:
+            <label class="m-1 form-label">No. of Bathrooms:
                 <input
                 type="number"
                 name="Bathroom"
@@ -29,13 +29,30 @@
                 value="{{ bathroom or ''}}">
             </label>
 
-            <label class="m-1">No. of Balcony:
+            <label class="m-1 form-label">No. of Balcony:
             <input
                 type="number"
                 name="Balcony"
                 placeholder="No. 0f Balcony"
                 class="p-2 rounded form-control"
                 value="{{ balcony or ''}}">
+            </label>
+
+            <label class="m-1 form-label">Location (Bangalore)
+                <input
+                    list="locations"
+                    id="location"
+                    name="Location"
+                    value="{{ location or '' }}"
+                    placeholder="Type or select a location"
+                    class="form-control rounded"
+                    required>
+
+                <datalist id="locations">
+                    {% for loc in locations %}
+                        <option value="{{ loc }}">
+                    {% endfor %}
+                </datalist>
             </label>
 
             <button type="submit" class="btn btn-primary rounded">

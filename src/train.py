@@ -7,13 +7,24 @@ from metrics import *
 
 df = load_data("../data/Bengaluru_House_Data.csv")
 
-print(f"rows before: {len(df)}")
+location_stats = df["location"].value_counts()
 
-df["total_sqft"] = (df["total_sqft"].apply(convert_sqft_to_num))
+location_stats_less_than_10 = location_stats[location_stats <= 10]
+
+df["location"] = df["location"].apply(lambda x: "other" if x in location_stats_less_than_10 else x)
+
+location_dummies = pd.get_dummies(df["location"], dtype=int)
+
+df = pd.concat([df, location_dummies], axis = 1)
+
+df.drop("location", axis=1, inplace=True)
+
+df["total_sqft"] = df["total_sqft"].apply(convert_sqft_to_num)
+df["size"] = df["size"].apply(extract_no_of_bedrooms)
 
 df = df.dropna(subset=["total_sqft"])
 
-print(f"rows after: {len(df)}")
+FEATURES = df.drop("price", axis=1).columns.tolist()
 
 X = df[FEATURES].values
 
@@ -38,7 +49,8 @@ model_data = {
     "mean": mean.tolist(),
     "std": std.tolist(),
     "y_mean": float(mean_y),
-    "y_std": float(std_y)
+    "y_std": float(std_y),
+    "columns": FEATURES
 }
 
 with open("../models/model.json", "w") as f:
